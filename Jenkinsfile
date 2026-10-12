@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -11,19 +12,19 @@ pipeline {
 
         stage('Maven Build') {
             steps {
-                bat 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t complete-build-lab:1.0 .'
+                sh 'docker build -t complete-build-lab:1.0 .'
             }
         }
 
         stage('Docker Test') {
             steps {
-                bat 'docker run --rm complete-build-lab:1.0'
+                sh 'docker run --rm complete-build-lab:1.0'
             }
         }
     }
